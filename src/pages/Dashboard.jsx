@@ -6,6 +6,7 @@ import '../Dashboard.css';
 
 function Dashboard() {
     const navigate = useNavigate();
+    const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
       const [studentName, setStudentName] = useState('');
       const [selectedCourses, setSelectedCourses] = useState([]);
       const [loadingCourses, setLoadingCourses] = useState(true);
@@ -138,7 +139,14 @@ function Dashboard() {
       }
   return (
     <div className="dashboard-page">
-      <aside className="dashboard-sidebar">
+      {mobileMenuOpen && (
+        <div
+        className="mobile-menu-overlay"
+        onClick={() => setMobileMenuOpen(false)}
+        />
+      )}
+
+<aside className={`dashboard-sidebar ${mobileMenuOpen ? 'mobile-open' : ''}`}>
         <Link to="/" className="dashboard-logo">
           <span className="dashboard-logo-icon">E</span>
           E-Helpie<span className="logo-dot">.</span>
@@ -147,19 +155,43 @@ function Dashboard() {
         <p className="sidebar-label">LEARNING SPACE</p>
 
         <nav className="dashboard-nav">
-          <a href="#overview" className="dashboard-nav-item active">
+          <a
+          href="#overview"
+          className="dashboard-nav-item active"
+          onClick={() => setMobileMenuOpen(false)}
+          >
             <span>⌂</span> Overview
           </a>
-          <a href="#courses" className="dashboard-nav-item">
+          
+          <a
+          href="#courses"
+          className="dashboard-nav-item"
+          onClick={() => setMobileMenuOpen(false)}
+          >
             <span>▤</span> My courses
           </a>
-          <a href="#practice" className="dashboard-nav-item">
+          
+          <a
+          href="#practice"
+          className="dashboard-nav-item"
+          onClick={() => setMobileMenuOpen(false)}
+          >
             <span>✓</span> Practice questions
           </a>
-          <a href="#exams" className="dashboard-nav-item">
+          
+          <a
+          href="#exams"
+          className="dashboard-nav-item"
+          onClick={() => setMobileMenuOpen(false)}
+          >
             <span>◷</span> CBT exams
           </a>
-          <a href="#results" className="dashboard-nav-item">
+          
+          <a
+          href="#results"
+          className="dashboard-nav-item"
+          onClick={() => setMobileMenuOpen(false)}
+          >
             <span>↗</span> My results
           </a>
         </nav>
@@ -174,21 +206,31 @@ function Dashboard() {
           <button
           type="button"
           className="dashboard-logout"
-          onClick={handleLogout}
+          onClick={() => {
+            setMobileMenuOpen(false);
+            handleLogout();
+          }}
           >
-            <span>↩</span> Log out
+            Log out
           </button>
         </div>
       </aside>
 
       <main className="dashboard-main" id="overview">
         <header className="dashboard-header">
+          <button
+          type="button"
+          className="mobile-menu-toggle"
+          onClick={() => setMobileMenuOpen(true)}
+          aria-label="Open navigation menu"
+          >
+            ☰
+          </button>    
+
           <div>
-            <span className="dashboard-date">YOUR LEARNING SPACE</span>
             <h1>
                 Welcome{studentName ? `, ${studentName}` : ' to E-Helpie'}!
             </h1>
-            <p>Ready to make progress with your studies today?</p>
           </div>
 
           <div className="dashboard-avatar">
