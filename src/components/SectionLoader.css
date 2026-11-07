@@ -1,0 +1,30 @@
+.section-loader {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+  padding: 40px 20px;
+  color: #68736d;
+}
+
+.section-spinner {
+  width: 34px;
+  height: 34px;
+  border: 3px solid #d6dfd9;
+  border-top-color: #27845a;
+  border-radius: 50%;
+  animation: sectionSpin 0.8s linear infinite;
+}
+
+.section-loader p {
+  margin: 0;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+@keyframes sectionSpin {
+  to {
+    transform: rotate(360deg);
+  }
+}
