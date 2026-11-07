@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { supabase } from '../utils/supabase';
 import SectionLoader from '../components/SectionLoader';
+import { Link } from 'react-router-dom';
 import './Courses.css';
 
 function Courses() {
@@ -136,9 +137,9 @@ setSelectedCourseDetails((previous) =>
   return (
     <main className="courses-page">
         <div className="courses-container">
-        <a href="/dashboard" className="back-to-dashboard">
+        <Link to="/dashboard" className="back-to-dashboard">
         ← Back to Dashboard
-        </a>
+        </Link>
       <h1>My Courses</h1>
       <p>
         <strong>Browse the NUC CCMAS-aligned Computer Science course catalogue
